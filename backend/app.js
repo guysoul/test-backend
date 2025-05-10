@@ -27,7 +27,7 @@ import vehicleRoutes from "./routes/vehicleRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
 //driver kordinater
 import locationRoutes from "./routes/locationRoutes.js";
-import sessionsRoutes from "./routes/sessions.js"
+import sessionsRoutes from "./routes/sessions.js";
 
 const fileName = fileURLToPath(import.meta.url);
 const dirName = path.dirname(fileName);
@@ -38,7 +38,7 @@ if (!fs.existsSync(uploadsDir)) {
 } // lager mappe hvis mappen ikke finnes
 app.use(
   cors({
-    origin: "http://localhost:5173", // React app running here
+    origin: "https://vikentours-opal.vercel.app", // React app running here
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
