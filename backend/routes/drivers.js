@@ -271,7 +271,8 @@ router.post("/forgot-password-request", async (req, res) => {
       );
 
     // Send token to frontend to pass to PHP mailer
-    res.json({ token });
+    const firstName = rows[0].first_name;
+    res.json({ token, first_name: firstName });
   } catch (error) {
     console.error("Error generating reset token:", error);
     res.status(500).json({ message: "Internal server error" });
