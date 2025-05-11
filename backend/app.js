@@ -38,7 +38,7 @@ if (!fs.existsSync(uploadsDir)) {
 } // lager mappe hvis mappen ikke finnes
 app.use(
   cors({
-    origin: "https://vikentours-opal.vercel.app", // React app running here
+    origin: "https://vikentours-opal.vercel.app" || "http://localhost:5173", // React app running here
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
