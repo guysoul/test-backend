@@ -15,7 +15,7 @@ router.post("/order", (req, res) => {
     email,
     phone,
     vehicle_id,
-    pickup_coords,  
+    pickup_coords,
     destination_coords,
   } = req.body;
   if (!customer_id || !start_location || !end_location || !start_time) {
@@ -44,7 +44,6 @@ router.post("/order", (req, res) => {
       vehicle_id || null,
       pickup_coords || null,
       destination_coords || null,
-
     ],
     (err, results) => {
       if (err) {
@@ -75,7 +74,8 @@ router.post("/order", (req, res) => {
 
 //hente ordere
 router.get("/admin/order", (req, res) => {
-  const sql = "SELECT * FROM driver_route WHERE status IN ('pending')";
+  const sql =
+    "SELECT * FROM driver_route WHERE status IN ('pending', 'cancelled')";
   db.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Kunne ikke hente turer" });
