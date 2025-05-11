@@ -50,7 +50,22 @@ router.post("/prices", (req, res) => {
       console.error("Feil ved lagring av ny pris:", err);
       return res.status(500).json({ error: "Serverfeil" });
     }
-    res.status(201).json({ message: "Ny pris lagt til", price_id: result.insertId });
+    res
+      .status(201)
+      .json({ message: "Ny pris lagt til", price_id: result.insertId });
+  });
+});
+
+router.delete("/prices/:price_id", (req, res) => {
+  const { price_id } = req.params;
+
+  const sql = "DELETE FROM prices WHERE price_id = ?";
+  db.query(sql, [price_id], (err) => {
+    if (err) {
+      console.error("Feil ved sletting av pris:", err);
+      return res.status(500).json({ error: "Serverfeil" });
+    }
+    res.json({ message: `Pris ${price_id} slettet` });
   });
 });
 
