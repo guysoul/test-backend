@@ -19,6 +19,7 @@ connection.getConnection((err) => {
     return;
   }
   console.log("Successfully connected to MySQL");
+  connection.release();
 });
 
 export default connection;
