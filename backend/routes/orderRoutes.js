@@ -5,7 +5,6 @@ const router = Router();
 // lage ordere
 router.post("/order", (req, res) => {
   const {
-    customer_id,
     start_location,
     end_location,
     start_time,
@@ -18,19 +17,18 @@ router.post("/order", (req, res) => {
     pickup_coords,
     destination_coords,
   } = req.body;
-  if (!customer_id || !start_location || !end_location || !start_time) {
+  if (!start_location || !end_location || !start_time) {
     return res.status(400).json({ error: "Mangler info" });
   }
   const registered_date = new Date();
   const status = "pending";
   const sql = `
-    INSERT INTO driver_route (customer_id, start_location, end_location, start_time, registered_date, status, passengers, message, name, email, phone, vehicle_id, pickup_coords, destination_coords)
+    INSERT INTO driver_route ( start_location, end_location, start_time, registered_date, status, passengers, message, name, email, phone, vehicle_id, pickup_coords, destination_coords)
     VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)
   `;
   db.query(
     sql,
     [
-      customer_id,
       start_location,
       end_location,
       start_time,
@@ -52,7 +50,7 @@ router.post("/order", (req, res) => {
       }
       res.status(201).json({
         route_id: results.insertId,
-        customer_id,
+
         driver_id: null,
         start_location,
         end_location,
