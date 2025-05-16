@@ -24,7 +24,7 @@ router.post("/order", (req, res) => {
   const status = "pending";
   const sql = `
     INSERT INTO driver_route ( start_location, end_location, start_time, registered_date, status, passengers, message, name, email, phone, vehicle_id, pickup_coords, destination_coords)
-    VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)
+    VALUES (?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)
   `;
   db.query(
     sql,
